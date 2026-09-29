@@ -19,4 +19,8 @@ Artists can download an owner-only release kit from `GET /api/tracks/:id/release
 
 Artists can create accounts with an artist name, email, and password. Passwords are stored as scrypt hashes; login sessions are random, HTTP-only cookies whose hashes are stored in SQLite and expire after 30 days. `POST /api/auth/signup` and `POST /api/auth/login` accept JSON; `GET /api/auth/me` checks the current session; `POST /api/auth/logout` ends it. Uploads require an artist session and are saved under that account.
 
-This is a local development backend. It does not yet provide remote hosting, account recovery, backups, production-grade abuse protection, or real subscription payments. Use HTTPS and add email verification and account recovery before opening registration to the public.
+## Deploy on Render
+
+`render.yaml` defines a Node web service and a 1 GB persistent disk mounted at `/var/data`. The SQLite database, audio uploads, and artwork are stored on that disk. In Render, create a Blueprint connected to this repository and review the service and disk before applying it. The service and persistent disk may incur charges; check Render's current pricing before provisioning. Use the generated `onrender.com` URL, not a Static Site, because signup and uploads require the Node API.
+
+Before opening registration publicly, add email verification, account recovery, and abuse protections; configure backups for the persistent disk. Membership is simulated and does not process payments.

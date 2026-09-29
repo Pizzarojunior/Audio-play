@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: roomtone
+    runtime: node
+    plan: starter
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: ROOMTONE_DATA_DIR
+        value: /var/data
+    disk:
+      name: roomtone-data
+      mountPath: /var/data
+      sizeGB: 1
