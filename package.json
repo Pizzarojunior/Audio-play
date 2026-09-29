@@ -1,0 +1,17 @@
+{
+	"name": "roomtone-music-library",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Local music library with SQLite metadata and disk-backed audio uploads",
+	"engines": {
+		"node": ">=22.5.0"
+	},
+	"scripts": {
+		"start": "node server.js",
+		"dev": "node --watch server.js"
+	},
+	"dependencies": {
+		"archiver": "^8.0.0",
+		"busboy": "^1.6.0"
+	}
+}
